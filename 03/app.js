@@ -47,7 +47,9 @@ books.getTitle = function(isbn, lang) {
     }
 
     const title =this[isbn].title;
-    return lang === 'en' ? title.en : title.pl;
+    if(typeof title[lang] !== 'undefined') {
+        return title[lang];
+    }
 }
 
 books.getTranslator = function(isbn, lang) {
@@ -56,8 +58,12 @@ books.getTranslator = function(isbn, lang) {
     }
 
     const translator = this[isbn].translator;
-    const result = translator[lang];
-    return result === null ? false : result;
+
+    if(typeof translator[lang] === 'undefined') {
+        return false;
+    }
+    
+    return translator[lang] === null ? false : translator[lang];
 }
 
 
