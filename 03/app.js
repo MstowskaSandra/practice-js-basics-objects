@@ -59,11 +59,12 @@ books.getTranslator = function(isbn, lang) {
 
     const translator = this[isbn].translator;
 
-    if(typeof translator[lang] === 'undefined') {
+    const result = translator[lang];
+    if(result === 'undefined') {
         return false;
     }
     
-    return translator[lang] === null ? false : translator[lang];
+    return result === null ? false : translator[lang];
 }
 
 
